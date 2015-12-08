@@ -1,4 +1,4 @@
 # I-hate-naming
->目录结构
->>├─lunbo
->>└─zhuanpan
+目录结构<br>
+　├─lunbo<br>
+　└─zhuanpan<br>
