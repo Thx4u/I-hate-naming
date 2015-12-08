@@ -1,115 +1,115 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="zh-cn">
 <head>
-	<meta http-equiv="Content-Type" content="text/html;charset=UTF-8" />
-	<title>网页标题</title>
-	<meta name="keywords" content="关键字列表" />
-	<meta name="description" content="网页描述" />
-	<link rel="stylesheet" type="text/css" href="" />
-	<script type="text/javascript" src="../jquery-1.7.1.min.js"></script>
-	<style type="text/css">
-		*{margin:0;padding:0;}
-		body{color:#333;font-size:12px;line-height:20px;}
-		ul,li{list-style:none;}
-		#content{margin:0 auto;width:540px;}
-		#content .scroll_mid{
-			margin-top:50px;
-			width:533px;
-			padding:5px 0 5px 5px;
-			border-left:1px solid #d6d5d6;
-			border-right:1px solid #d6d5d6;
-			background:#f2f2f3;
-		}
-		#scroll_number{
-			float:right;
-			padding-right:10px;
-		}
-		#scroll_number li{
-			margin-top:5px;
-			width:13px;
-			height:13px;
-			line-height:16px;
-			border:1px solid #999;
-			cursor:pointer;
-			text-align:center;
-		}
-		#content .scroll_end{
-			width:540px;
-			height:8px;
-			margin-bottom:10px;
-		}
-		.scroll_number_out{
-		}
-		.scroll_number_over{
-			background-color:#F96;
-			color:#FFF;
-		}
-	</style>
-	<script type="text/javascript">
-	//数组储存所有图片路径
-	var scroll_img=new Array();
-	scroll_img[0]="images/1.jpg";
-	scroll_img[1]="images/2.jpg";
-	scroll_img[2]="images/3.jpg";
-	scroll_img[3]="images/4.jpg";
-	//储存导航栏的id名称
-	var scroll_number=new Array();
-	scroll_number[0]="scroll_number_1";
-	scroll_number[1]="scroll_number_2";
-	scroll_number[2]="scroll_number_3";
-	scroll_number[3]="scroll_number_4";
-	//初始化轮播开始的位置
-	var curPic=2;
-	//图片数量
-	var maxPic=4; 
-	//轮播函数
-	function loopShow(n){
-		if(Number(n)){
-			curPic=n;	// 根据参数更改轮播执行的开始位置
-		}
-		// 获取id为dd_scroll的标签,修改图片路径
-		$("#dd_scroll").attr('src', scroll_img[curPic-1]);
-		// 循环更改所有(导航栏)li的class样式,取消高亮
-		for(var i=0;i<maxPic;i++){
-			$('#'+scroll_number[i]).attr('class', 'scroll_number_out');
-		}
-		// 修改当前的(导航栏)li的class样式,设置高亮
-		$('#'+scroll_number[curPic-1]).attr('class', 'scroll_number_over');
-		// 如果不写这段 每次触发鼠标事件都会使轮播速度加速
-		if(Number(n)){
-			stopScroll();
-		}
+    <meta http-equiv="Content-Type" content="text/html;charset=UTF-8" />
+    <title>网页标题</title>
+    <meta name="keywords" content="关键字列表" />
+    <meta name="description" content="网页描述" />
+    <link rel="stylesheet" type="text/css" href="" />
+    <script type="text/javascript" src="../jquery-1.7.1.min.js"></script>
+    <style type="text/css">
+        *{margin:0;padding:0;}
+        body{color:#333;font-size:12px;line-height:20px;}
+        ul,li{list-style:none;}
+        #content{margin:0 auto;width:540px;}
+        #content .scroll_mid{
+            margin-top:50px;
+            width:533px;
+            padding:5px 0 5px 5px;
+            border-left:1px solid #d6d5d6;
+            border-right:1px solid #d6d5d6;
+            background:#f2f2f3;
+        }
+        #scroll_number{
+            float:right;
+            padding-right:10px;
+        }
+        #scroll_number li{
+            margin-top:5px;
+            width:13px;
+            height:13px;
+            line-height:16px;
+            border:1px solid #999;
+            cursor:pointer;
+            text-align:center;
+        }
+        #content .scroll_end{
+            width:540px;
+            height:8px;
+            margin-bottom:10px;
+        }
+        .scroll_number_out{
+        }
+        .scroll_number_over{
+            background-color:#F96;
+            color:#FFF;
+        }
+    </style>
+    <script type="text/javascript">
+    //数组储存所有图片路径
+    var scroll_img=new Array();
+    scroll_img[0]="images/1.jpg";
+    scroll_img[1]="images/2.jpg";
+    scroll_img[2]="images/3.jpg";
+    scroll_img[3]="images/4.jpg";
+    //储存导航栏的id名称
+    var scroll_number=new Array();
+    scroll_number[0]="scroll_number_1";
+    scroll_number[1]="scroll_number_2";
+    scroll_number[2]="scroll_number_3";
+    scroll_number[3]="scroll_number_4";
+    //初始化轮播开始的位置
+    var curPic=2;
+    //图片数量
+    var maxPic=4; 
+    //轮播函数
+    function loopShow(n){
+        if(Number(n)){
+            curPic=n;   // 根据参数更改轮播执行的开始位置
+        }
+        // 获取id为dd_scroll的标签,修改图片路径
+        $("#dd_scroll").attr('src', scroll_img[curPic-1]);
+        // 循环更改所有(导航栏)li的class样式,取消高亮
+        for(var i=0;i<maxPic;i++){
+            $('#'+scroll_number[i]).attr('class', 'scroll_number_out');
+        }
+        // 修改当前的(导航栏)li的class样式,设置高亮
+        $('#'+scroll_number[curPic-1]).attr('class', 'scroll_number_over');
+        // 如果不写这段 每次触发鼠标事件都会使轮播速度加速
+        if(Number(n)){
+            stopScroll();
+        }
 
-		if(curPic==maxPic){
-			curPic=1;	// 到达最后一张图片,初始化curPic
-		}else{
-			curPic++;	// 没到最后一张,curPic +1 执行
-		}
-	}
+        if(curPic==maxPic){
+            curPic=1;   // 到达最后一张图片,初始化curPic
+        }else{
+            curPic++;   // 没到最后一张,curPic +1 执行
+        }
+    }
 
-	/*
-	 * 设置定时器开始轮播,定时执行函数loopshow()
-	 * @param 要执行的函数名称
-	 * @param 执行间隔时间,单位毫秒
-	 */
-	var timer=setInterval(loopShow,1000);
-	//清除定时器 onmouseover 鼠标移入
-	function stopScroll(){
-		clearInterval(timer);
-	}
-	//继续执行定时器 onmouseout 鼠标离开
-	function goon(){
-		timer=setInterval(loopShow,1000);
-	}
-	</script>
+    /*
+     * 设置定时器开始轮播,定时执行函数loopshow()
+     * @param 要执行的函数名称
+     * @param 执行间隔时间,单位毫秒
+     */
+    var timer=setInterval(loopShow,1000);
+    //清除定时器 onmouseover 鼠标移入
+    function stopScroll(){
+        clearInterval(timer);
+    }
+    //继续执行定时器 onmouseout 鼠标离开
+    function goon(){
+        timer=setInterval(loopShow,1000);
+    }
+    </script>
 </head>
 <body>
-	<div id="content">
+    <div id="content">
 
         <div class="scroll_mid"> 
-        	<!-- 图片栏 -->
-        	<img src="images/1.jpg" id="dd_scroll" onmouseover="stopScroll()" onmouseout="goon()"/>
-        	<!-- 导航栏 -->
+            <!-- 图片栏 -->
+            <img src="images/1.jpg" id="dd_scroll" onmouseover="stopScroll()" onmouseout="goon()"/>
+            <!-- 导航栏 -->
             <div id="scroll_number">
                 <ul>
                     <li id="scroll_number_1" onmouseover="loopShow(1)" class="scroll_number_over" onmouseout="goon()">1</li>
@@ -121,6 +121,6 @@
         </div>
 
         <div class="scroll_end"></div>
-	</div>
+    </div>
 </body>
 </html>
