@@ -1,4 +1,1 @@
 # I-hate-naming
-/
-├─zhuanpan
-└─
