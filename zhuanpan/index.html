@@ -6,25 +6,25 @@
 <script type="text/javascript" src="../jquery-1.7.1.min.js"></script>
 <style type="text/css">
 div{
-	margin: 100px auto 0;
-	width: 500px;
-	height: 250px;
-	border:3px solid red;
+    margin: 100px auto 0;
+    width: 500px;
+    height: 250px;
+    border:3px solid red;
 }
 li{
-	width: 129px;
-	height:59px;
-	border:3px solid #000;
-	float:left;
-	margin:8px 0 0 8px;
-	list-style:none;
+    width: 129px;
+    height:59px;
+    border:3px solid #000;
+    float:left;
+    margin:8px 0 0 8px;
+    list-style:none;
 }
 .btn{
-	border:3px solid red;
-	cursor: pointer;
+    border:3px solid red;
+    cursor: pointer;
 }
 .cur{
-	border:3px solid red;
+    border:3px solid red;
 }
 </style>
 <script type="text/javascript">
@@ -92,49 +92,49 @@ var msg = '';
 
 // 设置样式和重新设置定时器
 function run(){
-	// 删除设置的cur类
-	$('#'+step[current-1][0]).removeClass('cur');
-	// 为当前元素设置cur类
-	$('#'+step[current][0]).addClass('cur');
+    // 删除设置的cur类
+    $('#'+step[current-1][0]).removeClass('cur');
+    // 为当前元素设置cur类
+    $('#'+step[current][0]).addClass('cur');
 
-	// 判断step数组所有步骤是否已经走完
-	if (step.length - current - 1 + data == total){
-		alert(msg);
-		window.location.reload();
-	}else{
-		// 重新设置定时器
-		setTimeout('run()', step[current][1]);
-		current++;
-	}
+    // 判断step数组所有步骤是否已经走完
+    if (step.length - current - 1 + data == total){
+        alert(msg);
+        window.location.reload();
+    }else{
+        // 重新设置定时器
+        setTimeout('run()', step[current][1]);
+        current++;
+    }
 }
 
 function start(){
-	$.ajax({
-		url:"index.php",
-		type:"GET",
-		dataType:"json",
-		success:function(d){
-			msg = d[0];		// 设置转盘结束时弹窗显示的文字
-			data = d[1];	// 设置需要停在图片的序号
-			run();
-		}
-	});
+    $.ajax({
+        url:"index.php",
+        type:"GET",
+        dataType:"json",
+        success:function(d){
+            msg = d[0];     // 设置转盘结束时弹窗显示的文字
+            data = d[1];    // 设置需要停在图片的序号
+            run();
+        }
+    });
 }
 </script>
 </head>
 <body>
 <div>
-	<ul>
-		<li id="c1"><img src="img1.jpg"></li>
-		<li id="c2"><img src="img2.jpg"></li>
-		<li id="c3"><img src="img3.jpg"></li>
-		<li id="c8"><img src="img4.jpg"></li>
-		<li class="btn" onclick="start();"><img src="btn.jpg"></li>
-		<li id="c4"><img src="img1.jpg"></li>
-		<li id="c7"><img src="img2.jpg"></li>
-		<li id="c6"><img src="img3.jpg"></li>
-		<li id="c5"><img src="img4.jpg"></li>
-	</ul>
+    <ul>
+        <li id="c1"><img src="img1.jpg"></li>
+        <li id="c2"><img src="img2.jpg"></li>
+        <li id="c3"><img src="img3.jpg"></li>
+        <li id="c8"><img src="img4.jpg"></li>
+        <li class="btn" onclick="start();"><img src="btn.jpg"></li>
+        <li id="c4"><img src="img1.jpg"></li>
+        <li id="c7"><img src="img2.jpg"></li>
+        <li id="c6"><img src="img3.jpg"></li>
+        <li id="c5"><img src="img4.jpg"></li>
+    </ul>
 </div>
 </body>
 </html>
