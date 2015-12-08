@@ -1,2 +1,4 @@
 # I-hate-naming
-test
+目录结构
+ ├─lunbo
+ └─zhuanpan
