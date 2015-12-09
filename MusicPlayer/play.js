@@ -35,13 +35,12 @@ function get_lyric(method, lyric_name, ob){
  *处理歌曲列表
  */
 function deal_music_list(music_list_data, music_list_object){
-    var music_list_object = document.getElementById(music_list_object);
     var list = '';
     var len = music_list_data.length
     for(var i = 0; i < len; ++i){
         list += '<p onclick="music_change(' + i + ')" id="music' + i + '">' + music_list_data[i] + '</p>';
     }
-    music_list_object.innerHTML = list;
+    $('#'+music_list_object).html(list);
 }
 
 /*
@@ -59,9 +58,9 @@ function music_change(music_id){
  *处理歌词数据
  */ 
 function deal_lyric_data(ajax_lrc_data){
-    lrc_data.splicce(0, lrc_data.length);
+    lrc_data.splice(0, lrc_data.length);
     var lrc_list = ajax_lrc_data.split(',');
-    var lrc_length = lrc.list.length;
+    var lrc_length = lrc_list.length;
     var time_min;
     var time_sec;
     for(var i = 0; i < lrc_length; ++i){
