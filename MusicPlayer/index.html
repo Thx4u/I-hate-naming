@@ -1,0 +1,32 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en">
+<head>
+    <meta http-equiv="Content-Type" content="text/html;charset=UTF-8">
+    <title>音乐播放器</title>
+    <script type="text/javascript" src="../jquery.min.js"></script>
+    <script type="text/javascript" src="play.js"></script>
+    <link rel="stylesheet" type="text/css" href="play.css">
+</head>
+<body>
+<img src="1.jpg" id="bg">
+<div id="play_border">
+    <p>
+        <!-- html5里面的音频播放标签,src是播放地址,只要改变src地址就可以播放不同的歌曲,auto属性石自动播放,只要缓冲到一定长度就可以自动播放 -->
+        <audio src="./song/江山雪.mp3" id="media" autoplay="autoplay"></audio>
+    </p>
+    <div id="lrc_border">
+        <!-- 显示歌词 -->
+        <div id="lrc_move"></div>
+    </div>
+    <p id="button">
+        <rowspan onclick="play()" id="play">Play</rowspan>
+        <rowspan onclick="stop()">Stop</rowspan>
+    </p>
+    <!-- 显示歌曲播放进度 -->
+    <img id="process_img" src="http://lansky-forum.stor.sinaapp.com/bg/p1.gif"></img>
+</div>
+<div id="list">
+    <!-- 显示歌曲列表 -->
+</div>
+</body>
+</html>
