@@ -1,0 +1,472 @@
+<!DOCTYPE HTML>
+<html lang=zh-cn>
+<head>
+<meta charset=utf-8>
+<title>css3太阳系旋转</title>
+<style>
+body {
+    background: #111;
+    width: 100%;
+    height: 100%;
+    margin: 0;
+    padding: 0;
+    /* Container */
+    
+    overflow: hidden;
+}
+.b-system {
+    display: block;
+    width: 100vh;
+    height: 100vh;
+    position: absolute;
+    left: 50%;
+    top: 0;
+    transform: translateX(-50%);
+    margin: 0;
+    padding: 0;
+    /* Describing common properties */
+    
+    list-style: none;
+    background: radial-gradient(#6f4500 0%, #320 30%, #111 60%);
+}
+.b-system__object {
+    position: absolute;
+    left: 50%;
+    /* Info box */
+    /* Draw disc */
+    /* Draw orbit */
+    /* Draw Sun and planets */
+    
+    top: 50%;
+    transform: translate(-50%, -50%);
+}
+.b-system__object__about {
+    display: none;
+    position: absolute;
+    background: #fff;
+    width: 33vh;
+    padding: 1vh;
+    color: #333;
+    font: normal 1.2vh/1.6vh sans-serif;
+    text-align: justify;
+    left: 50%;
+}
+.b-system__object:hover > .b-system__object__about {
+    display: block;
+}
+.b-system__object::after {
+    content: "";
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    display: block;
+    width: 1vh;
+    height: 1vh;
+    border-radius: 5vh;
+    background: #f00;
+    cursor: pointer;
+    transform: translate(-50%, -50%);
+}
+.b-system__object::before {
+    content: "";
+    display: block;
+    border-radius: 100vh;
+    width: 5vh;
+    height: 5vh;
+    border: 0.3vh solid rgba(0, 0, 0, 0.25);
+}
+.b-system__object_sun {
+    z-index: 9;
+}
+.b-system__object_sun::after {
+    width: 3vh;
+    height: 3vh;
+    background: #ffb100;
+}
+.b-system__object_sun::before {
+    display: none;
+}
+.b-system__object_mercury {
+    z-index: 8;
+}
+.b-system__object_mercury::after {
+    background: #a60;
+    margin: -0.5vh 0 0 -0.5vh;
+    animation: orb-mercury 1s linear infinite;
+    -webkit-animation: orb-mercury 1s linear infinite;
+}
+.b-system__object_venus {
+    z-index: 7;
+}
+.b-system__object_venus::after {
+    background: #9ac;
+    width: 1.5vh;
+    height: 1.5vh;
+    margin: -0.75vh 0 0 -0.75vh;
+    animation: orb-venus 2.6s linear infinite;
+    -webkit-animation: orb-venus 2.6s linear infinite;
+}
+.b-system__object_venus::before {
+    width: 8vh;
+    height: 8vh;
+}
+.b-system__object_earth {
+    z-index: 6;
+}
+.b-system__object_earth::after {
+    background: #07a;
+    width: 1.8vh;
+    height: 1.8vh;
+    margin: -0.9vh 0 0 -0.9vh;
+    animation: orb-earth 4.1s linear infinite;
+    -webkit-animation: orb-earth 4.1s linear infinite;
+}
+.b-system__object_earth::before {
+    width: 12vh;
+    height: 12vh;
+}
+.b-system__object_mars {
+    z-index: 5;
+}
+.b-system__object_mars::after {
+    background: #b30;
+    width: 1.3vh;
+    height: 1.3vh;
+    margin: -0.65vh 0 0 -0.65vh;
+    animation: orb-mars 7.8s linear infinite;
+    -webkit-animation: orb-mars 7.8s linear infinite;
+}
+.b-system__object_mars::before {
+    width: 16vh;
+    height: 16vh;
+}
+.b-system__object_belt {
+    z-index: 4;
+}
+.b-system__object_belt::after {
+    content: "";
+    display: block;
+    background: none;
+    width: 20vh;
+    height: 20vh;
+    border: 1vh dotted #543;
+    border-radius: 11vh;
+    position: absolute;
+    left: 1vh;
+    top: 1vh;
+    animation: spinA 20s linear infinite;
+    -webkit-animation: spinA 20s linear infinite;
+}
+.b-system__object_belt::before {
+    content: "";
+    display: block;
+    background: none;
+    width: 20vh;
+    height: 20vh;
+    border: 2vh dotted #432;
+    border-radius: 12vh;
+    animation: spinB 35s linear infinite;
+    -webkit-animation: spinB 35s linear infinite;
+}
+.b-system__object_jupiter {
+    z-index: 3;
+}
+.b-system__object_jupiter::after {
+    background: #a68876;
+    width: 4vh;
+    height: 4vh;
+    margin: -2vh 0 0 -2vh;
+    animation: orb-jupiter 49.2s linear infinite;
+    -webkit-animation: orb-jupiter 49.2s linear infinite;
+}
+.b-system__object_jupiter::before {
+    width: 30vh;
+    height: 30vh;
+}
+.b-system__object_saturn {
+    z-index: 2;
+}
+.b-system__object_saturn::after {
+    background: radial-gradient(#a59678 0%, #a59678 40%, rgba(0, 0, 0, 0) 41%, rgba(0, 0, 0, 0) 49%, #646464 50%);
+    width: 5vh;
+    height: 5vh;
+    margin: -2.5vh 0 0 -2.5vh;
+    animation: orb-saturn 122.3s linear infinite;
+    -webkit-animation: orb-saturn 122.3s linear infinite;
+}
+.b-system__object_saturn::before {
+    width: 40vh;
+    height: 40vh;
+}
+.b-system__object_uranus {
+    z-index: 1;
+}
+.b-system__object_uranus::after {
+    background: #80aaac;
+    width: 2.8vh;
+    height: 2.8vh;
+    margin: -1.4vh 0 0 -1.4vh;
+    animation: orb-uranus 348.7s linear infinite;
+    -webkit-animation: orb-uranus 348.7s linear infinite;
+}
+.b-system__object_uranus::before {
+    width: 52vh;
+    height: 52vh;
+}
+.b-system__object_neptune {
+    z-index: 0;
+}
+.b-system__object_neptune::after {
+    background: #36569f;
+    width: 2.6vh;
+    height: 2.6vh;
+    margin: -1.3vh 0 0 -1.3vh;
+    animation: orb-neptune 684s linear infinite;
+    -webkit-animation: orb-neptune 684s linear infinite;
+}
+.b-system__object_neptune::before {
+    width: 60vh;
+    /* Animation */
+    
+    height: 60vh;
+}
+@keyframes orb-mercury {
+    from {
+        transform: rotate(0deg) translate(2.5vh);
+    }
+    to {
+        transform: rotate(360deg) translate(2.5vh);
+    }
+}
+@-webkit-keyframes orb-mercury {
+    from {
+        transform: rotate(0deg) translate(2.5vh);
+    }
+    to {
+        transform: rotate(360deg) translate(2.5vh);
+    }
+}
+@keyframes orb-venus {
+    from {
+        transform: rotate(0deg) translate(4vh);
+    }
+    to {
+        transform: rotate(360deg) translate(4vh);
+    }
+}
+@-webkit-keyframes orb-venus {
+    from {
+        transform: rotate(0deg) translate(4vh);
+    }
+    to {
+        transform: rotate(360deg) translate(4vh);
+    }
+}
+@keyframes orb-earth {
+    from {
+        transform: rotate(0deg) translate(6vh);
+    }
+    to {
+        transform: rotate(360deg) translate(6vh);
+    }
+}
+@-webkit-keyframes orb-earth {
+    from {
+        transform: rotate(0deg) translate(6vh);
+    }
+    to {
+        transform: rotate(360deg) translate(6vh);
+    }
+}
+@keyframes orb-mars {
+    from {
+        transform: rotate(0deg) translate(8vh);
+    }
+    to {
+        transform: rotate(360deg) translate(8vh);
+    }
+}
+@-webkit-keyframes orb-mars {
+    from {
+        transform: rotate(0deg) translate(8vh);
+    }
+    to {
+        transform: rotate(360deg) translate(8vh);
+    }
+}
+@keyframes orb-jupiter {
+    from {
+        transform: rotate(0deg) translate(15vh);
+    }
+    to {
+        transform: rotate(360deg) translate(15vh);
+    }
+}
+@-webkit-keyframes orb-jupiter {
+    from {
+        transform: rotate(0deg) translate(15vh);
+    }
+    to {
+        transform: rotate(360deg) translate(15vh);
+    }
+}
+@keyframes orb-saturn {
+    from {
+        transform: rotate(0deg) translate(20vh);
+    }
+    to {
+        transform: rotate(360deg) translate(20vh);
+    }
+}
+@-webkit-keyframes orb-saturn {
+    from {
+        transform: rotate(0deg) translate(20vh);
+    }
+    to {
+        transform: rotate(360deg) translate(20vh);
+    }
+}
+@keyframes orb-uranus {
+    from {
+        transform: rotate(0deg) translate(26vh);
+    }
+    to {
+        transform: rotate(360deg) translate(26vh);
+    }
+}
+@-webkit-keyframes orb-uranus {
+    from {
+        transform: rotate(0deg) translate(26vh);
+    }
+    to {
+        transform: rotate(360deg) translate(26vh);
+    }
+}
+@keyframes orb-neptune {
+    from {
+        transform: rotate(0deg) translate(30vh);
+    }
+    to {
+        transform: rotate(360deg) translate(30vh);
+    }
+}
+@-webkit-keyframes orb-neptune {
+    from {
+        transform: rotate(0deg) translate(-30vh);
+    }
+    to {
+        transform: rotate(360deg) translate(-30vh);
+    }
+}
+@keyframes spinA {
+    from {
+        transform: rotate(0deg);
+    }
+    to {
+        transform: rotate(360deg);
+    }
+}
+@-webkit-keyframes spinA {
+    from {
+        transform: rotate(0deg);
+    }
+    to {
+        transform: rotate(360deg);
+    }
+}
+@keyframes spinB {
+    from {
+        transform: rotate(0deg);
+    }
+    to {
+        transform: rotate(-360deg);
+    }
+}
+@-webkit-keyframes spinB {
+    from {
+        transform: rotate(0deg);
+    }
+    to {
+        transform: rotate(-360deg);
+    }
+
+</style>
+</head>
+<body>
+<ul class="b-system">
+    <li class="b-system__object b-system__object_sun">
+        <article class="b-system__object__about">
+            <h1 class="b-system__object__name">Sun</h1>
+            <p class="b-system__object__info">The Sun is the star at the center of the Solar System. It is seen in the sky and gives light to the Earth. When the Sun is in the sky, it is day. When the Sun is not in the sky, it is night. The planets, including Earth, go around it.</p>
+        </article>
+    </li>
+    <li class="b-system__object b-system__object_mercury">
+        <article class="b-system__object__about">
+            <h1 class="b-system__object__name">Mercury</h1>
+            <p class="b-system__object__info">Mercury is the smallest planet in the Solar System. It is the closest planet to the sun. It makes one trip around the Sun once every 87.969 days. Mercury is bright when it is visible from Earth, ranging from −2.0 to 5.5 in apparent magnitude.
+                It cannot be easily seen as it is usually too close to the Sun. Because Mercury is normally lost in the glare of the Sun (except during a solar eclipse), Mercury can only be seen in the morning or evening twilight.</p>
+        </article>
+    </li>
+    <li class="b-system__object b-system__object_venus">
+        <article class="b-system__object__about">
+            <h1 class="b-system__object__name">Venus</h1>
+            <p class="b-system__object__info">Venus is the second planet from the Sun. It is a terrestrial planet because it has a solid, rocky surface like other planets in the inner solar system. Astronomers have known Venus for thousands of years. The ancient Romans named it after
+                their goddess Venus. Venus is the brightest thing in the night sky except for the Moon. It is sometimes called the morning star or the evening star as it is brightest just before the sun comes up in the morning, and just after the sun
+                goes down in the evening. Venus comes closer to the earth than any other planet does.</p>
+        </article>
+    </li>
+    <li class="b-system__object b-system__object_earth">
+        <article class="b-system__object__about">
+            <h1 class="b-system__object__name">Earth</h1>
+            <p class="b-system__object__info">The Earth is the third planet from the Sun and it is the only planet known to have life on it. The Earth formed around 4.5 billion years ago. It is one of four rocky planets on the inside of the Solar System. The other three are Mercury, Venus,
+                and Mars.</p>
+        </article>
+    </li>
+    <li class="b-system__object b-system__object_mars">
+        <article class="b-system__object__about">
+            <h1 class="b-system__object__name">Mars</h1>
+            <p class="b-system__object__info">Mars is the fourth planet from the Sun in the Solar System and the second-smallest solid planet. Mars is rocky and cold, with polar ice caps of frozen water and carbon dioxide. It has the largest volcano in the Solar System, and some very
+                large impact craters. Mars is named after the mythological Roman god of war because it is a red planet, the colour of blood.</p>
+        </article>
+    </li>
+
+    <li class="b-system__object b-system__object_belt">
+        <article class="b-system__object__about">
+            <h1 class="b-system__object__name">Asteroid belt</h1>
+            <p class="b-system__object__info">The asteroid belt or main belt is a ring of small and large rocks and dust between the orbits of Mars and Jupiter. The biggest object in the asteroid belt is Ceres, a dwarf planet. Most asteroids orbit at 2 to 3 times the distance between
+                Earth and the Sun. Planets that are "inside" - or before - the asteroid belt (which means they are closer to the sun) are called inner planets. Planets that are "outside" - that is, after - the asteroid belt are called outer planets: so
+                Mercury, Venus, Earth, and Mars are inner planets, while Jupiter, Saturn, Uranus and Neptune are the outer planets.</p>
+        </article>
+    </li>
+
+    <li class="b-system__object b-system__object_jupiter">
+        <article class="b-system__object__about">
+            <h1 class="b-system__object__name">Jupiter</h1>
+            <p class="b-system__object__info">Jupiter is the largest planet in the Solar System. It is the fifth planet from the Sun. Jupiter is classified as a gas giant, both because it is so large and due to the fact that it is made up mostly of gas. The other gas giants are Saturn,
+                Uranus, and Neptune.</p>
+        </article>
+    </li>
+    <li class="b-system__object b-system__object_saturn">
+        <article class="b-system__object__about">
+            <h1 class="b-system__object__name">Saturn</h1>
+            <p class="b-system__object__info">Saturn is the sixth planet from the Sun in the Solar System. It is the second largest planet in the Solar System, after Jupiter. Like Jupiter, Uranus and Neptune, it is a "gas giant". The inside of Saturn is probably a core of iron, nickel,
+                silicon and oxygen compounds, surrounded by a deep layer of metallic hydrogen, then a layer of liquid hydrogen and liquid helium and finally, an outer gaseous layer.</p>
+        </article>
+    </li>
+    <li class="b-system__object b-system__object_uranus">
+        <article class="b-system__object__about">
+            <h1 class="b-system__object__name">Uranus</h1>
+            <p class="b-system__object__info">Uranus is the seventh planet from the Sun in the Solar System. It is a gas giant. It is the third largest planet in the solar system. The planet is made of ice, gases and liquid metal. Its atmosphere contains hydrogen, helium and methane.
+                The temperature on Uranus is −197 degrees C (79 K) near the top of its atmosphere, but its small solid core (about 55% the mass of Earth) is probably about 5,000K. The planet is tilted on its axis so much that it is sideways.</p>
+        </article>
+    </li>
+    <li class="b-system__object b-system__object_neptune">
+        <article class="b-system__object__about">
+            <h1 class="b-system__object__name">Neptune</h1>
+            <p class="b-system__object__info">Neptune is the eighth and last planet from the Sun in the Solar System. It is a gas giant. It is the fourth largest planet and third heaviest. Neptune has four rings which are hard to see from the Earth. It is 17 times heavier than Earth and
+                is a little bit heavier than Uranus. It was named after the Roman God of the Sea.</p>
+        </article>
+    </li>
+</ul>
+</body>
+</html>
