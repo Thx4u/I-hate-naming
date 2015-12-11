@@ -19,14 +19,14 @@ if($method == 'get_lyric_data'){
             $lrc_data = '';
             while(!feof($file)){
                 $text = fgets($file);
-                $text = preg_replace("/\n\r/", '', $text);  // windows下\n\r, linux下\n
+                $text = preg_replace("/\r\n/", '', $text);  // windows下\n\r, linux下\n
                 $lrc_data = $lrc_data.$text.',';
             }
             fclose($file);
             $data = array(
                 'state' => 'success',
                 'message' => 'all have done',
-                'lrc' => $lrc_data
+                'lrc' => iconv('gb2312', 'utf-8', $lrc_data)
             );
             echo json_encode($data);
         }else{
