@@ -52,7 +52,7 @@ if($method == 'get_lyric_data'){
     closedir($handle);
     $list_length = count($list);
     $data['state'] = 'success';
-    $data['music_list'] = [];
+    $data['music_list'] = array();
     for($i = 0; $i < $list_length; $i++){
         $list[$i] = iconv('gb2312', 'utf-8', $list[$i]);    // 编码转换
         $data['music_list'][$i] = $list[$i];
